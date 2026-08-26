@@ -8,18 +8,39 @@ num1 = float(input("Введіть перше число: "))
 operation = input("Введіть операцію (+, -, ): ")
 num2 = float(input("Введіть друге число: "))
 
+if operation == "+":
+    result = num1 + num2
+elif operation == "-":
+    result = num1 - num2
+else:
+    print("Невідома операція")
+    result = None
+
 
 # Вправа 2: Перевірка паролю
 print("\n=== ВПРАВА 2: Перевірка паролю ===")
 print("Створіть систему перевірки паролю")
 print("Пароль повинен містити принаймні 8 символів")
 
+password = input("Введіть пароль: ")
+
+if len(password) >= 8:
+    print("Пароль підходить")
+else:
+    print("Пароль занадто короткий")
 
 # Вправа 3: Визначення високосного року
 print("\n=== ВПРАВА 3: Високосний рік ===")
 print("Рік є високосним, якщо:")
 print("- Ділиться на 4 І не ділиться на 100")
 print("- АБО ділиться на 400")
+
+year = int(input("Введіть рік: "))
+
+if (year % 4 == 0 and year % 100 != 0) or year % 400 == 0:
+    print("Рік високосний")
+else:
+    print("Рік не високосний")
 
 
 # Вправа 4: Лічильник голосних
@@ -30,7 +51,9 @@ text = input("Введіть текст: ").lower()
 vowels = "аеиіїоуюя"
 count = 0
 
-# код тут
+for letter in text:
+    if letter in vowels:
+        count += 1
 
 print(f"Кількість голосних: {count}")
 
@@ -47,7 +70,14 @@ print("\n=== ВПРАВА 5: Гра ===")
 Перевірте роботу гри самостійно, змінюючи значення alien_color
 """
 
+alien_color = "green"
 
+if alien_color == "green":
+    print("Гравець щойно заробив 5 балів!")
+elif alien_color == "yellow":
+    print("Гравець щойно заробив 10 балів!")
+elif alien_color == "red":
+    print("Гравець щойно заробив 15 балів!")
 
 # Вправа 6: Піцерія *
 print("\n=== ВПРАВА 6: Начинки для піци (pizza_topping) ===")
@@ -55,6 +85,13 @@ print("\n=== ВПРАВА 6: Начинки для піци (pizza_topping) ==="
 для піци, доки він не введе значення 'quit'. Коли вони введуть кожну начинку,
 надрукуйте повідомлення про те, що ви додасте цю начинку до їхньої піци.
 """
+pizza_topping = ""
+
+while pizza_topping != "quit":
+    pizza_topping = input("Введіть начинку для піци (або 'quit' для завершення): ")
+
+    if pizza_topping != "quit":
+        print(f"Я додам {pizza_topping} до вашої піци!")
 
 
 
@@ -62,12 +99,27 @@ print("\n=== ВПРАВА 6: Начинки для піци (pizza_topping) ==="
 print("\n=== ВПРАВА 7: Зворотний порядок ===")
 print("Виведіть цифри числа у зворотному порядку")
 
-
+number = input("Введіть число: ")
+reverse_number = number[::-1]
+print("Число у зворотному порядку:", reverse_number)
 
 # Вправа 8: Пошук максимального числа
 print("\n=== ВПРАВА 8: Пошук максимального ===")
 print("Знайдіть найбільше число серед введених")
 print("Введіть 0 для завершення")
+
+maximum = None
+
+while True:
+    number = int(input("Введіть число: "))
+
+    if number == 0:
+        break
+
+    if maximum is None or number > maximum:
+        maximum = number
+
+print("Найбільше число:", maximum)
 
 
 # Вправа 9: Виключення зі списку
@@ -77,6 +129,11 @@ print("\n=== ВПРАВА 9: Виключення зі списку ===")
 """
 fruits = ["apple", "banana", "orange", "grape", "mango"]
 
+for fruit in fruits:
+    if fruit == "orange":
+        continue
+    print(fruit)
+
 
 # Вправа 10: Вираз в один рядок
 print("\n=== ВПРАВА 10: Вираз з умовою в один рядок ===")
@@ -84,5 +141,6 @@ print("\n=== ВПРАВА 10: Вираз з умовою в один рядок 
 парних чисел зі списку. Спробуйте використати if та цикл for в один рядок.
 """
 numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-result = ["Відповідь вставте сюди"]
+result = [num ** 2 for num in numbers if num % 2 == 0]
 print(result)  #  [4, 16, 36, 64, 100]
+
